@@ -52,3 +52,7 @@ contract MintGemToken is ERC721Enumerable {
 ---
 
 **`OpenSea Testnet`**
+<p align="center">
+<img width="948" alt="스크린샷 2022-05-25 오후 11 21 42" src="https://user-images.githubusercontent.com/85790271/170285331-3961c433-fb96-4ee9-9f68-522ae2853c4c.png">
+</p>
+
