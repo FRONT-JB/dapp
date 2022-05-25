@@ -61,6 +61,17 @@ contract MintGemToken is ERC721Enumerable {
 
 **`Ownable`**
 
-<p align="center">
+_Ownable을 주입하면 해당 프로젝트를 커스텀 할 수 있다._
 
+<p align="center">
+<img width="1030" alt="스크린샷 2022-05-25 오후 11 32 05" src="https://user-images.githubusercontent.com/85790271/170288624-a2ef0ed8-b029-4b85-b426-640f09b681c7.png">
+<img width="673" alt="스크린샷 2022-05-25 오후 11 34 27" src="https://user-images.githubusercontent.com/85790271/170288702-dfecfbf3-4c55-40b8-882f-6ca192d30463.png">
 </p>
+
+---
+
+**`Sell`**
+<p align="center">
+<img width="726" alt="스크린샷 2022-05-25 오후 11 35 44" src="https://user-images.githubusercontent.com/85790271/170288845-a51ef44d-4a15-41cc-82ab-2041e378b266.png">
+</p>
+
