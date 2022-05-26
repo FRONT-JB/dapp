@@ -1,22 +1,25 @@
-import { Box } from "@chakra-ui/react";
+import { Button, Flex, useDisclosure } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import { useEffect } from "react";
-import { useAccount, useCaver } from "../hooks";
+import MintingModal from "../components/MintingModal";
 
 const Home: NextPage = () => {
-  const { account } = useAccount();
-  const { caver, mintGemTokenContract, saleGemTokenContract } = useCaver();
-  useEffect(() => {
-    console.log(caver);
-  }, [caver]);
-  useEffect(() => {
-    console.log(mintGemTokenContract);
-  }, [mintGemTokenContract]);
-  useEffect(() => {
-    console.log(saleGemTokenContract);
-  }, [saleGemTokenContract]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  return <Box>{account || ""}</Box>;
+  return (
+    <>
+      <Flex
+        bg="red.100"
+        minH="100vh"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Button colorScheme="pink" onClick={onOpen}>
+          Minting
+        </Button>
+      </Flex>
+      <MintingModal isOpen={isOpen} onClose={onClose} />
+    </>
+  );
 };
 
 export default Home;
