@@ -1,9 +1,9 @@
 import { AbiItem } from "caver-js";
 
 export const MINT_GEM_TOKEN_ADDRESS =
-  "0x9707885Fef6F9812e9148be2577c1f74249D66A8";
+  "0xCbFfd6f17ac20520Bd40F1D0B92000378398D5E5";
 export const SALE_GEM_TOKEN_ADDRESS =
-  "0xf9d28041F27D38FfF03823b3ac58F637ff5BaAfE";
+  "0x33B262cCaD0375c90634F7a53BBdD6Dc49Ade811";
 export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
   {
     inputs: [
@@ -77,6 +77,31 @@ export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
     type: "event",
   },
   {
+    inputs: [
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "approve",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "mintGemToken",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
     anonymous: false,
     inputs: [
       {
@@ -94,6 +119,82 @@ export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
     ],
     name: "OwnershipTransferred",
     type: "event",
+  },
+  {
+    inputs: [],
+    name: "renounceOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes",
+        name: "_data",
+        type: "bytes",
+      },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "approved",
+        type: "bool",
+      },
+    ],
+    name: "setApprovalForAll",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
   },
   {
     anonymous: false,
@@ -121,46 +222,12 @@ export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
     type: "event",
   },
   {
-    inputs: [],
-    name: "MAX_TOKEN_COUNT",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "TOKEN_RANK_LENGTH",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "TOKEN_TYPE_LENGTH",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
       {
         internalType: "address",
         name: "to",
@@ -172,7 +239,20 @@ export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
         type: "uint256",
       },
     ],
-    name: "approve",
+    name: "transferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
+    ],
+    name: "transferOwnership",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -353,6 +433,19 @@ export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
   },
   {
     inputs: [],
+    name: "MAX_TOKEN_COUNT",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "metadataURI",
     outputs: [
       {
@@ -362,13 +455,6 @@ export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "mintGemToken",
-    outputs: [],
-    stateMutability: "payable",
     type: "function",
   },
   {
@@ -417,82 +503,6 @@ export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes",
-        name: "_data",
-        type: "bytes",
-      },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-      {
-        internalType: "bool",
-        name: "approved",
-        type: "bool",
-      },
-    ],
-    name: "setApprovalForAll",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     inputs: [
       {
         internalType: "bytes4",
@@ -519,6 +529,32 @@ export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
         internalType: "string",
         name: "",
         type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "TOKEN_RANK_LENGTH",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "TOKEN_TYPE_LENGTH",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -599,44 +635,39 @@ export const MINT_GEM_TOKEN_ABI: AbiItem[] = [
     stateMutability: "view",
     type: "function",
   },
+];
+export const SALE_GEM_TOKEN_ABI: AbiItem[] = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
         internalType: "uint256",
-        name: "tokenId",
+        name: "_tokenId",
         type: "uint256",
       },
     ],
-    name: "transferFrom",
+    name: "purchaseGemToken",
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
     type: "function",
   },
   {
     inputs: [
       {
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
+        internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_price",
+        type: "uint256",
       },
     ],
-    name: "transferOwnership",
+    name: "setForSaleGemToken",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
-];
-export const SALE_GEM_TOKEN_ABI: AbiItem[] = [
   {
     inputs: [
       {
@@ -824,37 +855,6 @@ export const SALE_GEM_TOKEN_ABI: AbiItem[] = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "purchaseGemToken",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_tokenId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_price",
-        type: "uint256",
-      },
-    ],
-    name: "setForSaleGemToken",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {

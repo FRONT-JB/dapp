@@ -9,8 +9,10 @@ import {
   ModalOverlay,
   Text,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { MINT_GEM_TOKEN_ADDRESS } from "../caverConfig";
-import { useAccount, useCaver } from "../hooks";
+import { useAccount, useCaver, useMetadata } from "../hooks";
+import { GemTokenData } from "../interfaces";
 
 interface MintingModalProps {
   isOpen: boolean;
@@ -19,10 +21,12 @@ interface MintingModalProps {
 
 const MintingModal = ({ isOpen, onClose }: MintingModalProps) => {
   const { account } = useAccount();
-  const { caver, mintGemTokenContract } = useCaver();
+  const { caver, mintGemTokenContract, saleGemTokenContract } = useCaver();
+  const { metadataURI, getMetadata } = useMetadata();
 
   const handleClickMint = async () => {
-    if (!account || !caver || !mintGemTokenContract) return;
+    if (!account || !caver || !mintGemTokenContract || !saleGemTokenContract)
+      return;
 
     //
     // const response = await mintGemTokenContract.methods.mintGemToken().send({
@@ -40,12 +44,22 @@ const MintingModal = ({ isOpen, onClose }: MintingModalProps) => {
       data: mintGemTokenContract.methods.mintGemToken().encodeABI(),
     });
 
-    console.log(response);
+    if (response.status) {
+      const { gemTokenRank, gemTokenType }: GemTokenData =
+        await saleGemTokenContract.methods
+          .getLatestMintedGemToken(account)
+          .call();
+      getMetadata(gemTokenRank, gemTokenType);
+    }
     try {
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    console.log(metadataURI);
+  }, [metadataURI]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

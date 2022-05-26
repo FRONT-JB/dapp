@@ -1,6 +1,13 @@
 import Caver, { Contract } from "caver-js";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { MINT_GEM_TOKEN_ABI, MINT_GEM_TOKEN_ADDRESS } from "../caverConfig";
+import {
+  MINT_GEM_TOKEN_ABI,
+  MINT_GEM_TOKEN_ADDRESS,
+  SALE_GEM_TOKEN_ABI,
+  SALE_GEM_TOKEN_ADDRESS,
+} from "../caverConfig";
+import { GemTokenMetadata } from "../interfaces";
 
 export const useAccount = () => {
   const [account, setAccount] = useState<string>("");
@@ -44,9 +51,28 @@ export const useCaver = () => {
       caver.contract.create(MINT_GEM_TOKEN_ABI, MINT_GEM_TOKEN_ADDRESS)
     );
     setSaleGemTokenContract(
-      caver.contract.create(MINT_GEM_TOKEN_ABI, MINT_GEM_TOKEN_ADDRESS)
+      caver.contract.create(SALE_GEM_TOKEN_ABI, SALE_GEM_TOKEN_ADDRESS)
     );
   }, [caver]);
 
   return { caver, mintGemTokenContract, saleGemTokenContract };
+};
+
+export const useMetadata = () => {
+  const [metadataURI, setMetadataURI] = useState<GemTokenMetadata | undefined>(
+    undefined
+  );
+
+  const getMetadata = async (gemTokenRank: string, gemTokenType: string) => {
+    try {
+      const response = await axios.get(
+        `https://gateway.pinata.cloud/ipfs/Qmcvadt3CMXxHRKgD4XhgWG8nXwnXc4rjFuTLwgsGFccwY/${gemTokenRank}/${gemTokenType}.json`
+      );
+
+      setMetadataURI(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return { metadataURI, getMetadata };
 };

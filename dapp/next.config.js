@@ -12,6 +12,9 @@ const nextConfig = {
     };
     return config;
   },
+  env: {
+    METADATA_URI: process.env.METADATA_URI,
+  },
 };
 
 module.exports = nextConfig;
