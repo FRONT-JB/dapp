@@ -7,6 +7,8 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MintGemToken is ERC721Enumerable, Ownable {
+    uint constant public MAX_TOKEN_COUNT = 1000;
+
     string public metadataURI;
 
     // 10^18 Peb = 1 Klay
@@ -31,6 +33,7 @@ contract MintGemToken is ERC721Enumerable, Ownable {
 
     function mintGemToken() public payable {
         require(gemTokenPrice <= msg.value, "Not enough Klay.");
+        require(MAX_TOKEN_COUNT > totalSupply(), "No More minting is possible.");
         uint tokenId = totalSupply() + 1;
         GemTokenData memory randomTokenData = randomGenerator(msg.sender, tokenId);
         gemTokenData[tokenId] = GemTokenData(randomTokenData.gemTokenRank, randomTokenData.gemTokenType);
