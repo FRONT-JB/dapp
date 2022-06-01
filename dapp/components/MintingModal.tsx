@@ -20,12 +20,14 @@ interface MintingModalProps {
   isOpen: boolean;
   onClose: () => void;
   onRemainGemToken: () => Promise<void>;
+  onGemTokenCount: () => Promise<void>;
 }
 
 const MintingModal = ({
   isOpen,
   onClose,
   onRemainGemToken,
+  onGemTokenCount,
 }: MintingModalProps) => {
   const { account } = useAccount();
   const { caver, mintGemTokenContract, saleGemTokenContract } = useCaver();
@@ -58,6 +60,7 @@ const MintingModal = ({
           .call();
       getMetadata(gemTokenRank, gemTokenType);
       onRemainGemToken();
+      onGemTokenCount();
     }
     try {
     } catch (error) {
